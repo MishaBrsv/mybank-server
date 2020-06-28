@@ -33,9 +33,11 @@ public class CurrencyRateApiService {
             String responseString = Objects.requireNonNull(response.body()).string();
             JsonNode jsonNode = objectMapper.readTree(responseString);
 
-            JsonNode result = jsonNode.get("rates").get(direction).get("rate");
+            JsonNode result = !jsonNode.get("rates").isNull() ?
+                    jsonNode.get("rates").get(direction).get("rate") : null;
 
-            return objectMapper.readValue(result.toString(), String.class);
+            return Objects.nonNull(result) ? objectMapper.readValue(result.toString(), String.class) :
+                    "-1";
         } catch (IOException e) {
             log.error(e.getMessage(), e);
         }

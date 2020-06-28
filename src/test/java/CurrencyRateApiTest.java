@@ -35,4 +35,9 @@ public class CurrencyRateApiTest {
     public void getUsdRub() {
         System.out.println(currencyRateApiService.getUsdRub());
     }
+
+    @Test
+    public void getRate() {
+        System.out.println(currencyRateApiService.getRate("USDRUB"));
+    }
 }
