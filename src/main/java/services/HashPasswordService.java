@@ -1,9 +1,7 @@
 package services;
 
 import org.apache.commons.codec.digest.DigestUtils;
-import org.springframework.stereotype.Service;
 
-@Service
 public class HashPasswordService {
     public static String hashPass(String password) {
         String md5Hex = DigestUtils.md5Hex(password);
